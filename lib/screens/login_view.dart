@@ -11,10 +11,12 @@ class LoginPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: Icon(Icons.favorite_border),
-        title: Text ("SmartCat"),
+        leading: Image.asset('assets/images/logo.png'),
+        title: Text ("SmartCat",),
+
         backgroundColor: Colors.black,
       ),
+
       body: Container(
         color: Colors.white,
         padding: EdgeInsets.all(20.0),
@@ -39,8 +41,8 @@ class LoginPage extends StatelessWidget {
 Widget _iconLogin() {
   return Image.asset(
     "assets/images/login.png",
-      width: 150.0,
-      height: 150.0,
+      width: 200.0,
+      height: 200.0,
   ); //images
 }
 
@@ -126,7 +128,7 @@ Widget _buildButton(BuildContext context) {
             textAlign: TextAlign.center,
           ),
           decoration: BoxDecoration(
-            color: Colors.black45,
+            color: Colors.black,
             borderRadius: BorderRadius.circular(30.0),
           ),
         ),
@@ -153,7 +155,7 @@ Widget _buildButton(BuildContext context) {
             textAlign: TextAlign.center,
           ),
           decoration: BoxDecoration(
-            color: Colors.black45,
+            color: Colors.black,
             borderRadius: BorderRadius.circular(30.0),
           ),
         ),
