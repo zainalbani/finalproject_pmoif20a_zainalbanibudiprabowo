@@ -1,3 +1,4 @@
+import 'package:finalproject_pmoif20a_zainal/screens/login_view.dart';
 import 'package:flutter/material.dart';
 import 'package:finalproject_pmoif20a_zainal/constants.dart';
 
@@ -5,7 +6,6 @@ import 'package:finalproject_pmoif20a_zainal/constants.dart';
 class RegisterPage extends StatelessWidget {
   const RegisterPage({Key? key}) : super(key: key);
 
-  static const routeName = "/registerPage";
 
   @override
   Widget build(BuildContext context) {
@@ -204,17 +204,32 @@ Widget _buildButton(BuildContext context) {
           fontSize: 12.0,
         ),
       ),
-      TextButton(
-        child: Text(
-          'Login',
-          style: TextStyle(
-            color: Colors.black,
-            fontSize: 18.0,
+      Padding(
+        padding: EdgeInsets.only(top: 16.0),
+      ),
+      InkWell(
+        onTap: (){
+          Navigator.push(context,
+              MaterialPageRoute(
+                  builder: (context) => LoginPage()
+              ));
+        },
+        child: Container(
+          padding: EdgeInsets.symmetric(vertical: 8.0),
+          width: double.infinity,
+          child: Text(
+            'Login',
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 16.0,
+            ),
+            textAlign: TextAlign.center,
+          ),
+          decoration: BoxDecoration(
+            color: Colors.black45,
+            borderRadius: BorderRadius.circular(30.0),
           ),
         ),
-        onPressed: () {
-          Navigator.pushNamed(context, "/");
-        },
       ),
     ],
   );

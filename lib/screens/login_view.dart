@@ -4,6 +4,7 @@ import 'package:finalproject_pmoif20a_zainal/constants.dart';
 import 'package:finalproject_pmoif20a_zainal/screens/register_view.dart';
 import 'package:finalproject_pmoif20a_zainal/screens/Menu_Utama.dart';
 
+
 class LoginPage extends StatelessWidget {
   const LoginPage({Key? key}) : super(key: key);
 
@@ -170,19 +171,33 @@ Widget _buildButton(BuildContext context) {
           fontSize: 12.0,
         ),
       ),
-      //register
-      TextButton(
-        child: Text(
-          'Register',
-          style: TextStyle(
-            color: Colors.black,
-            fontSize: 18.0,
+      Padding(
+        padding: EdgeInsets.only(top: 16.0),
+      ),
+      InkWell(
+        onTap: (){
+          Navigator.push(context,
+              MaterialPageRoute(
+                  builder: (context) => RegisterPage()
+              ));
+        },
+        child: Container(
+          padding: EdgeInsets.symmetric(vertical: 8.0),
+          width: double.infinity,
+          child: Text(
+            'Register',
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 16.0,
+            ),
+            textAlign: TextAlign.center,
+            ),
+            decoration: BoxDecoration(
+              color: Colors.black45,
+              borderRadius: BorderRadius.circular(30.0),
+            ),
           ),
         ),
-        onPressed: () {
-          Navigator.pushNamed(context, RegisterPage.routeName);
-        },
-      ),
     ],
   );
 }
