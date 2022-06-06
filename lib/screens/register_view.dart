@@ -11,7 +11,7 @@ class RegisterPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: Image.asset('assets/images/logo.png'),
+        leading: Icon(Icons.favorite_border),
         title: Text ("SmartCat",),
         backgroundColor: Colors.black,
       ),
@@ -39,8 +39,8 @@ class RegisterPage extends StatelessWidget {
 Widget _iconRegister() {
   return Image.asset(
     "assets/images/login.png",
-    width: 200.0,
-    height: 200.0,
+    width: 100.0,
+    height: 100.0,
   );
 }
 
@@ -168,7 +168,7 @@ Widget _buildButton(BuildContext context) {
             textAlign: TextAlign.center,
           ),
           decoration: BoxDecoration(
-            color: Colors.black,
+            color: Colors.black45,
             borderRadius: BorderRadius.circular(30.0),
           ),
         ),
@@ -189,7 +189,7 @@ Widget _buildButton(BuildContext context) {
             textAlign: TextAlign.center,
           ),
           decoration: BoxDecoration(
-            color: Colors.black,
+            color: Colors.black45,
             borderRadius: BorderRadius.circular(30.0),
           ),
         ),
