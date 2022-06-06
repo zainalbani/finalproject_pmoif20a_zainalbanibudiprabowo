@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class MenuUtama extends StatefulWidget {
@@ -12,10 +13,20 @@ class _MenuUtamaState extends State<MenuUtama> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: Icon(Icons.favorite_border),
+        leading: Image.asset('assets/images/logo.png'),
         title: Text('SmartCat'),
         backgroundColor: Colors.black,
+        actions: [
+          IconButton(icon: Icon(Icons.account_circle_sharp), onPressed: (){}),
+          Container(
+            child: Align(
+              alignment: Alignment.centerLeft,
+              child: Text("Hello, User"),
+            )
+          )
+        ],
       ),
+
       body: Container(
         color: Colors.white,
         padding: EdgeInsets.all(20.0),
@@ -72,7 +83,7 @@ Widget _buildButton(BuildContext context) {
             textAlign: TextAlign.center,
           ),
           decoration: BoxDecoration(
-            color: Colors.black45,
+            color: Colors.black,
             borderRadius: BorderRadius.circular(30.0),
           ),
         ),
@@ -93,7 +104,7 @@ Widget _buildButton(BuildContext context) {
             textAlign: TextAlign.center,
           ),
           decoration: BoxDecoration(
-            color: Colors.black45,
+            color: Colors.black,
             borderRadius: BorderRadius.circular(30.0),
           ),
         ),
@@ -114,7 +125,7 @@ Widget _buildButton(BuildContext context) {
             textAlign: TextAlign.center,
           ),
           decoration: BoxDecoration(
-            color: Colors.black45,
+            color: Colors.black,
             borderRadius: BorderRadius.circular(30.0),
           ),
         ),
@@ -135,7 +146,7 @@ Widget _buildButton(BuildContext context) {
             textAlign: TextAlign.center,
           ),
           decoration: BoxDecoration(
-            color: Colors.black45,
+            color: Colors.black,
             borderRadius: BorderRadius.circular(30.0),
           ),
         ),
@@ -156,7 +167,7 @@ Widget _buildButton(BuildContext context) {
             textAlign: TextAlign.center,
           ),
           decoration: BoxDecoration(
-            color: Colors.black45,
+            color: Colors.black,
             borderRadius: BorderRadius.circular(30.0),
           ),
         ),

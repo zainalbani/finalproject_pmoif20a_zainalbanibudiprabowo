@@ -25,7 +25,7 @@ class _splashscreenState extends State<splashscreen> {
     return Container(
       color: Colors.cyanAccent,
       //image
-      child: Image.asset('assets/images/_'),
+      child: Image.asset("assets/images/kucing1.png"),
     );
   }
 }
