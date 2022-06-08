@@ -29,7 +29,7 @@ class _MenuUtamaState extends State<MenuUtama> {
 
       body: Container(
         color: Colors.white,
-        padding: EdgeInsets.all(20.0),
+        padding: EdgeInsets.all(40.0),
         child: ListView(
           children: <Widget>[
             Center(
@@ -52,13 +52,12 @@ Widget _textField() {
     children: <Widget>[
       Text(
         'MENU UTAMA',
-        style: TextStyle(
-          color: Colors.black,
-          fontSize: 22.0,
+        style: TextStyle(fontWeight: FontWeight.bold,
+          fontSize: 30.0,
         ),
       ),
       Padding(
-        padding: EdgeInsets.only(top: 12.0),
+        padding: EdgeInsets.only(top: 70.0),
       ),
     ],
   );
