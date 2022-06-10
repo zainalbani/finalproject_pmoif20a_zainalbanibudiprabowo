@@ -1,3 +1,8 @@
+import 'package:finalproject_pmoif20a_zainal/screens/Diskusi.dart';
+import 'package:finalproject_pmoif20a_zainal/screens/Penyakit_Kucing.dart';
+import 'package:finalproject_pmoif20a_zainal/screens/Jenis_Kucing.dart';
+import 'package:finalproject_pmoif20a_zainal/screens/Penanganan.dart';
+import 'package:finalproject_pmoif20a_zainal/screens/Konsultasi.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -29,7 +34,7 @@ class _MenuUtamaState extends State<MenuUtama> {
 
       body: Container(
         color: Colors.white,
-        padding: EdgeInsets.all(20.0),
+        padding: EdgeInsets.all(40.0),
         child: ListView(
           children: <Widget>[
             Center(
@@ -52,13 +57,12 @@ Widget _textField() {
     children: <Widget>[
       Text(
         'MENU UTAMA',
-        style: TextStyle(
-          color: Colors.black,
-          fontSize: 22.0,
+        style: TextStyle(fontWeight: FontWeight.bold,
+          fontSize: 30.0,
         ),
       ),
       Padding(
-        padding: EdgeInsets.only(top: 12.0),
+        padding: EdgeInsets.only(top: 70.0),
       ),
     ],
   );
@@ -71,6 +75,12 @@ Widget _buildButton(BuildContext context) {
         padding: EdgeInsets.only(top: 20.0),
       ),
       InkWell(
+        onTap: (){
+          Navigator.push(context,
+              MaterialPageRoute(
+                  builder: (context) => JenisKucing()
+              ));
+        },
         child: Container(
           padding: EdgeInsets.symmetric(vertical: 8.0),
           width: double.infinity,
@@ -92,6 +102,12 @@ Widget _buildButton(BuildContext context) {
         padding: EdgeInsets.only(top: 16.0),
       ),
       InkWell(
+        onTap: (){
+          Navigator.push(context,
+              MaterialPageRoute(
+                  builder: (context) => PenyakitKucing()
+              ));
+        },
         child: Container(
           padding: EdgeInsets.symmetric(vertical: 8.0),
           width: double.infinity,
@@ -113,6 +129,12 @@ Widget _buildButton(BuildContext context) {
         padding: EdgeInsets.only(top: 16.0),
       ),
       InkWell(
+        onTap: (){
+          Navigator.push(context,
+              MaterialPageRoute(
+                  builder: (context) => Penanganan()
+              ));
+        },
         child: Container(
           padding: EdgeInsets.symmetric(vertical: 8.0),
           width: double.infinity,
@@ -134,6 +156,12 @@ Widget _buildButton(BuildContext context) {
         padding: EdgeInsets.only(top: 16.0),
       ),
       InkWell(
+        onTap: (){
+          Navigator.push(context,
+              MaterialPageRoute(
+                  builder: (context) => Diskusi()
+              ));
+        },
         child: Container(
           padding: EdgeInsets.symmetric(vertical: 8.0),
           width: double.infinity,
@@ -155,6 +183,12 @@ Widget _buildButton(BuildContext context) {
         padding: EdgeInsets.only(top: 16.0),
       ),
       InkWell(
+        onTap: (){
+          Navigator.push(context,
+              MaterialPageRoute(
+                  builder: (context) => Konsultasi()
+              ));
+        },
         child: Container(
           padding: EdgeInsets.symmetric(vertical: 8.0),
           width: double.infinity,
