@@ -66,6 +66,7 @@ Widget _textField() {
               width: 3.0,
             ),
           ),
+          icon: Icon(Icons.account_circle_outlined),
           hintText: "Username",
           hintStyle: TextStyle(
               color: Colors.blueAccent),
@@ -91,6 +92,7 @@ Widget _textField() {
               width: 3.0,
             ),
           ),
+          icon: Icon(Icons.help_outline),
           hintText: "Password",
           hintStyle: TextStyle(color: Colors.blueAccent),
         ),

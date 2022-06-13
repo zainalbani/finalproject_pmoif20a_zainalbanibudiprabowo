@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:finalproject_pmoif20a_zainal/screens/Menu_Utama.dart';
 
 class Konsultasi extends StatelessWidget {
   const Konsultasi ({Key? key}) : super(key: key);
@@ -9,7 +10,15 @@ class Konsultasi extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: Image.asset('assets/images/logo.png'),
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back_ios_new),
+          onPressed: (){
+            Navigator.push(context,
+                MaterialPageRoute(
+                    builder: (context) => MenuUtama()
+                ));
+          },
+        ),
         title: Text("SmartCat"),
         backgroundColor: Colors.black,
         actions: [
