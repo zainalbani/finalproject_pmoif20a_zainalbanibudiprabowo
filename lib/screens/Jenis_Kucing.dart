@@ -6,6 +6,7 @@ import 'package:finalproject_pmoif20a_zainal/screens/Menu_Utama.dart';
 class JenisKucing extends StatelessWidget {
   const JenisKucing({Key? key}) : super(key: key);
 
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,72 +32,111 @@ class JenisKucing extends StatelessWidget {
           )
         ],
       ),
-      body: Container(
-        color: Colors.white,
-        padding: EdgeInsets.all(20.0),
-        child: ListView(
-          children: <Widget> [
-            Center(
-              child: Column(
-                children: <Widget>[
-                  _textField(),
-                ],
+      body: SafeArea(
+        child: Stack(
+          children: <Widget>[
+            Container(
+              height: double.infinity,
+              width: double.infinity,
+              decoration: BoxDecoration(
+                color: Colors.white,
               ),
-            ),
-            new GambarKucing(gambar: 'assets/images/anggora.jpg',judul: 'Kucing Anggora',),
-            new GambarKucing(gambar: 'assets/images/persia.jpg',judul: 'Kucing Persia',)
-          ],
-        ),
-      ),
-    );
-  }
-}
-Widget _textField() {
-  return Column(
-    children: <Widget>[
-      Text(
-        'Jenis Kucing',
-        style: TextStyle(
-          color: Colors.black,
-          fontSize: 22.0,
-        ),
-      ),
-      Padding(
-        padding: EdgeInsets.only(top: 12.0),
-      ),
-    ],
-  );
-}
-class GambarKucing extends StatelessWidget {
-
-GambarKucing({required this.gambar, required this.judul});
-
-final String gambar;
-final String judul;
-  @override
-  Widget build(BuildContext context) {
-    return new Container(
-        padding: EdgeInsets.all(15.0),
-        child: new Center(
-            child: new Row(
-              children: <Widget>[
-                new Image.asset(gambar,
-                width: 175.0,
-                ),
-                new Container(
-                  child: new Center(
-                    child: new Column(
-                  children: <Widget>[
-                    new Text(judul),
-                    new Text("Kucing kucing")
-                  ],
-                    )
-
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Padding(padding: const EdgeInsets.all(20.0),
+          child: Center(
+            child: Wrap(
+              spacing: 30.0,
+              runSpacing: 20.0,
+              children: [
+                SizedBox(
+                  width: 200.0,
+                  height: 250.0,
+                  child: Card(
+                    color: Colors.white,
+                    elevation: 2.8,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(8.0),
+                    ),
+                    child: Center(
+                      child: Padding(padding: const EdgeInsets.all(8.0),
+                        child: Column(
+                          children: [
+                            Image.asset("assets/images/persia.jpg", width: 115, height: 115),
+                            SizedBox(height: 1.0),
+                            Text("Kucing Persia", style: TextStyle(
+                              color: Colors.black,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 15.0
+                            ),),
+                            Text("Bulu tebal, mata bulat dan berwarna cerah, hidung pesek, telinga kecil, kepala berukuran besar, kaki pendek, ekor panjang, badan bulat.", style: TextStyle(
+                                color: Colors.black,
+                                fontWeight: FontWeight.normal,
+                                fontSize: 13.0
+                            ),)
+                          ],
+                        ),
+                      ),
+                    ),
                   )
                 )
-              ],
-            )
+          ]
         )
+      )
+    ),
+                  Padding(padding: const EdgeInsets.all(5.0),
+                      child: Center(
+                          child: Wrap(
+                              spacing: 30.0,
+                              runSpacing: 20.0,
+                              children: [
+                                SizedBox(
+                                    width: 200.0,
+                                    height: 250.0,
+                                    child: Card(
+                                      color: Colors.white,
+                                      elevation: 2.8,
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(8.0),
+                                      ),
+                                      child: Center(
+                                        child: Padding(padding: const EdgeInsets.all(8.0),
+                                          child: Column(
+                                            children: [
+                                              Image.asset("assets/images/persia.jpg", width: 115, height: 115),
+                                              SizedBox(height: 1.0),
+                                              Text("Kucing Anggora", style: TextStyle(
+                                                  color: Colors.black,
+                                                  fontWeight: FontWeight.bold,
+                                                  fontSize: 15.0
+                                              ),),
+                                              Text("Bulu panjang, bentuk kepala segitiga, mata seperti almond, tubuh panjang dan langsing, hidung mancung.",
+                                                  style: TextStyle(
+                                                  color: Colors.black,
+                                                  fontWeight: FontWeight.normal,
+                                                  fontSize: 13.0
+                                              ),),
+
+                                            ],
+                                          ),
+                                        ),
+                                      ),
+                                    )
+                                )
+                              ]
+                          )
+                      )
+                  ),
+
+    ],
+    )
+    )
+    ]
+    ),
+
+    ),
     );
   }
 }
+
