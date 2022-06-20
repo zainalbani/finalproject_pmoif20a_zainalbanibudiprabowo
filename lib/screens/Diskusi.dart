@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:finalproject_pmoif20a_zainal/screens/Menu_Utama.dart';
 
 class Diskusi extends StatelessWidget {
   const Diskusi ({Key? key}) : super(key: key);
@@ -9,7 +10,15 @@ class Diskusi extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: Image.asset('assets/images/logo.png'),
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back_ios_new),
+          onPressed: (){
+            Navigator.push(context,
+                MaterialPageRoute(
+                    builder: (context) => const MenuUtama()
+                ));
+          },
+        ),
         title: Text("SmartCat"),
         backgroundColor: Colors.black,
         actions: [
@@ -22,35 +31,65 @@ class Diskusi extends StatelessWidget {
           )
         ],
       ),
-      body: Container(
-        color: Colors.white,
-        padding: EdgeInsets.all(20.0),
-        child: ListView(
-            children: <Widget> [
-        Center(
-        child: Column(
-            children: <Widget>[
-            _textField(),
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Text('Mari Berdiskusi',
+            style: TextStyle(
+                color: Colors.black,
+                fontSize: 20,
+                fontWeight: FontWeight.bold
+            ),
+          ),
+          SizedBox(height: 20,),
+          Container(
+            alignment: Alignment.topCenter,
+            decoration: BoxDecoration(
+              color: Colors.black12,
+              borderRadius: BorderRadius.circular(10),
+            ),
+            height: 130,
+            width: 400,
+            child: TextField(
+              keyboardType: TextInputType.multiline,
+              maxLines: 4,
+              style: TextStyle(
+                  color: Colors.black
+              ),
+              decoration: InputDecoration(
+                  border: InputBorder.none,
+                  contentPadding: EdgeInsets.all(10),
+                  hintText: 'Ketikan Sesuatu....',
+                  hintStyle: TextStyle(
+                      color: Colors.black38
+                  )
+              ),
+            ),
+          )
         ],
       ),
-    ),
-    ],
-    ),
-    ),
     );
   }
 }
-Widget _textField(){
+Widget _buildDiskusi(){
   return Column(
-    children: <Widget>[
-      Text('Forum Diskusi',
-        style: TextStyle(
+  crossAxisAlignment: CrossAxisAlignment.start,
+  children: <Widget>[
+  RaisedButton(
+  hoverColor: Colors.lightGreenAccent,
+    padding: const EdgeInsets.only(left: 30, right: 30, top: 15, bottom: 15),
+    color: Colors.orange,
+    child: const Text("Kirim", style: TextStyle(
+      fontSize: 20,
           color: Colors.black,
-          fontSize: 22.0,
+      fontWeight: FontWeight.bold,
         ),
       ),
-      Padding(
-          padding: EdgeInsets.only(top: 20.0))
-    ],
+  shape: StadiumBorder(),
+  onPressed: () {
+  },
+  )
+  ],
+
   );
 }

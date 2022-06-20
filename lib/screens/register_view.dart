@@ -1,18 +1,39 @@
 import 'package:finalproject_pmoif20a_zainal/screens/login_view.dart';
 import 'package:flutter/material.dart';
 import 'package:finalproject_pmoif20a_zainal/constants.dart';
+import 'package:finalproject_pmoif20a_zainal/Api/Api.dart';
 
-
-class RegisterPage extends StatelessWidget {
+class RegisterPage extends StatefulWidget {
   const RegisterPage({Key? key}) : super(key: key);
 
+  @override
+  State<RegisterPage> createState() => _RegisterPageState();
+}
+
+class _RegisterPageState extends State<RegisterPage> {
+
+  TextEditingController controllerusername = TextEditingController();
+  TextEditingController controllerpassword = TextEditingController();
+  TextEditingController controlleremail = TextEditingController();
+  TextEditingController controllerrepassword = TextEditingController();
+
+  _register() async {
+    var data = {
+      'username': controllerusername.text,
+      'password': controllerpassword.text,
+      'email': controlleremail.text,
+      'repassword': controllerrepassword.text,
+    };
+    bool res = await CallApi().postData(data, 'users', context);
+    Navigator.pop(context);
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         leading: Image.asset('assets/images/logo.png'),
-        title: Text ("SmartCat",),
+        title: Text("SmartCat",),
         backgroundColor: Colors.black,
       ),
       body: Container(
@@ -34,203 +55,214 @@ class RegisterPage extends StatelessWidget {
       ),
     );
   }
-}
 
-Widget _iconRegister() {
-  return Image.asset(
-    "assets/images/login.png",
-    width: 200.0,
-    height: 200.0,
-  );
-}
 
-Widget _textField() {
-  return Column(
-    children: <Widget>[
-      Padding(
-        padding: EdgeInsets.only(top: 12.0),
-      ),
-      TextFormField(
-        decoration: const InputDecoration(
-          border: UnderlineInputBorder(),
-          enabledBorder: UnderlineInputBorder(
-            borderSide: BorderSide(
-              color: ColorPalette.underlineTextField,
-              width: 1.5,
-            ),
-          ),
-          focusedBorder: UnderlineInputBorder(
-            borderSide: BorderSide(
-              color: Colors.black26,
-              width: 3.0,
-            ),
-          ),
-          hintText: "Username",
-          hintStyle: TextStyle(color: Colors.blueAccent),
-        ),
-        style: TextStyle(color: Colors.black),
-        autofocus: false,
-      ),
-      Padding(
-        padding: EdgeInsets.only(top: 12.0),
-      ),
-      TextFormField(
-        decoration: const InputDecoration(
-          border: UnderlineInputBorder(),
-          enabledBorder: UnderlineInputBorder(
-            borderSide: BorderSide(
-              color: ColorPalette.underlineTextField,
-              width: 1.5,
-            ),
-          ),
-          focusedBorder: UnderlineInputBorder(
-            borderSide: BorderSide(
-              color: Colors.black26,
-              width: 3.0,
-            ),
-          ),
-          hintText: "Email",
-          hintStyle: TextStyle(color: Colors.blueAccent),
-        ),
-        style: TextStyle(color: Colors.black),
-        autofocus: false,
-      ),
-      Padding(
-        padding: EdgeInsets.only(top: 12.0),
-      ),
-      TextFormField(
-        decoration: const InputDecoration(
-          border: UnderlineInputBorder(),
-          enabledBorder: UnderlineInputBorder(
-            borderSide: BorderSide(
-              color: ColorPalette.underlineTextField,
-              width: 1.5,
-            ),
-          ),
-          focusedBorder: UnderlineInputBorder(
-            borderSide: BorderSide(
-              color: Colors.black26,
-              width: 3.0,
-            ),
-          ),
-          hintText: "Password",
-          hintStyle: TextStyle(color: Colors.blueAccent),
-        ),
-        style: TextStyle(color: Colors.black),
-        obscureText: true,
-        autofocus: false,
-      ),
-      Padding(
-        padding: EdgeInsets.only(top: 12.0),
-      ),
-      TextFormField(
-        decoration: const InputDecoration(
-          border: UnderlineInputBorder(),
-          enabledBorder: UnderlineInputBorder(
-            borderSide: BorderSide(
-              color: ColorPalette.underlineTextField,
-              width: 1.5,
-            ),
-          ),
-          focusedBorder: UnderlineInputBorder(
-            borderSide: BorderSide(
-              color: Colors.black26,
-              width: 3.0,
-            ),
-          ),
-          hintText: "Re-Password",
-          hintStyle: TextStyle(color: Colors.blueAccent),
-        ),
-        style: TextStyle(color: Colors.black),
-        obscureText: true,
-        autofocus: false,
-      ),
-    ],
-  );
-}
+  Widget _iconRegister() {
+    return Image.asset(
+      "assets/images/login.png",
+      width: 200.0,
+      height: 200.0,
+    );
+  }
 
-Widget _buildButton(BuildContext context) {
-  return Column(
-    children: <Widget>[
-      Padding(
-        padding: EdgeInsets.only(top: 20.0),
-      ),
-      InkWell(
-        child: Container(
-          padding: EdgeInsets.symmetric(vertical: 8.0),
-          width: double.infinity,
-          child: Text(
-            'Register',
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: 16.0,
+  Widget _textField() {
+    return Column(
+      children: <Widget>[
+        Padding(
+          padding: EdgeInsets.only(top: 12.0),
+        ),
+        TextFormField(
+          controller: controllerusername,
+          decoration: const InputDecoration(
+            border: UnderlineInputBorder(),
+            enabledBorder: UnderlineInputBorder(
+              borderSide: BorderSide(
+                color: ColorPalette.underlineTextField,
+                width: 1.5,
+              ),
             ),
-            textAlign: TextAlign.center,
-          ),
-          decoration: BoxDecoration(
-            color: Colors.black,
-            borderRadius: BorderRadius.circular(30.0),
-          ),
-        ),
-      ),
-      Padding(
-        padding: EdgeInsets.only(top: 16.0),
-      ),
-      InkWell(
-        child: Container(
-          padding: EdgeInsets.symmetric(vertical: 8.0),
-          width: double.infinity,
-          child: Text(
-            'Register Dokter',
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: 16.0,
+            focusedBorder: UnderlineInputBorder(
+              borderSide: BorderSide(
+                color: Colors.black26,
+                width: 3.0,
+              ),
             ),
-            textAlign: TextAlign.center,
+            hintText: "Username",
+            hintStyle: TextStyle(color: Colors.blueAccent),
           ),
-          decoration: BoxDecoration(
-            color: Colors.black,
-            borderRadius: BorderRadius.circular(30.0),
-          ),
+          style: TextStyle(color: Colors.black),
+          autofocus: false,
         ),
-      ),
-      Padding(
-        padding: EdgeInsets.only(top: 16.0),
-      ),
-      Text(
-        'Sudah memiliki akun?',
-        style: TextStyle(
-          color: Colors.black,
-          fontSize: 12.0,
+        Padding(
+          padding: EdgeInsets.only(top: 12.0),
         ),
-      ),
-      Padding(
-        padding: EdgeInsets.only(top: 16.0),
-      ),
-      InkWell(
-        onTap: (){
-          Navigator.push(context,
-              MaterialPageRoute(
-                  builder: (context) => LoginPage()
-              ));
-        },
-        child: Container(
-          padding: EdgeInsets.symmetric(vertical: 8.0),
-          width: double.infinity,
-          child: Text(
-            'Login',
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: 16.0,
+        TextFormField(
+          controller: controlleremail,
+          decoration: const InputDecoration(
+            border: UnderlineInputBorder(),
+            enabledBorder: UnderlineInputBorder(
+              borderSide: BorderSide(
+                color: ColorPalette.underlineTextField,
+                width: 1.5,
+              ),
             ),
-            textAlign: TextAlign.center,
+            focusedBorder: UnderlineInputBorder(
+              borderSide: BorderSide(
+                color: Colors.black26,
+                width: 3.0,
+              ),
+            ),
+            hintText: "Email",
+            hintStyle: TextStyle(color: Colors.blueAccent),
           ),
-          decoration: BoxDecoration(
-            color: Colors.black,
-            borderRadius: BorderRadius.circular(30.0),
+          style: TextStyle(color: Colors.black),
+          autofocus: false,
+        ),
+        Padding(
+          padding: EdgeInsets.only(top: 12.0),
+        ),
+        TextFormField(
+          controller: controllerpassword,
+          decoration: const InputDecoration(
+            border: UnderlineInputBorder(),
+            enabledBorder: UnderlineInputBorder(
+              borderSide: BorderSide(
+                color: ColorPalette.underlineTextField,
+                width: 1.5,
+              ),
+            ),
+            focusedBorder: UnderlineInputBorder(
+              borderSide: BorderSide(
+                color: Colors.black26,
+                width: 3.0,
+              ),
+            ),
+            hintText: "Password",
+            hintStyle: TextStyle(color: Colors.blueAccent),
+          ),
+          style: TextStyle(color: Colors.black),
+          obscureText: true,
+          autofocus: false,
+        ),
+        Padding(
+          padding: EdgeInsets.only(top: 12.0),
+        ),
+        TextFormField(
+          controller: controllerrepassword,
+          decoration: const InputDecoration(
+            border: UnderlineInputBorder(),
+            enabledBorder: UnderlineInputBorder(
+              borderSide: BorderSide(
+                color: ColorPalette.underlineTextField,
+                width: 1.5,
+              ),
+            ),
+            focusedBorder: UnderlineInputBorder(
+              borderSide: BorderSide(
+                color: Colors.black26,
+                width: 3.0,
+              ),
+            ),
+            hintText: "Re-Password",
+            hintStyle: TextStyle(color: Colors.blueAccent),
+          ),
+          style: TextStyle(color: Colors.black),
+          obscureText: true,
+          autofocus: false,
+        ),
+      ],
+    );
+  }
+
+  Widget _buildButton(BuildContext context) {
+    return Column(
+      children: <Widget>[
+        Padding(
+          padding: EdgeInsets.only(top: 20.0),
+        ),
+        InkWell(
+          onTap: (){
+            _register();
+          },
+          child: Container(
+            padding: EdgeInsets.symmetric(vertical: 8.0),
+            width: double.infinity,
+            child: Text(
+              'Register',
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 16.0,
+              ),
+              textAlign: TextAlign.center,
+            ),
+            decoration: BoxDecoration(
+              color: Colors.black,
+              borderRadius: BorderRadius.circular(30.0),
+            ),
           ),
         ),
-      ),
-    ],
-  );
+        Padding(
+          padding: EdgeInsets.only(top: 16.0),
+        ),
+        InkWell(
+          onTap: (){
+            _register();
+          },
+          child: Container(
+            padding: EdgeInsets.symmetric(vertical: 8.0),
+            width: double.infinity,
+            child: Text(
+              'Register Dokter',
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 16.0,
+              ),
+              textAlign: TextAlign.center,
+            ),
+            decoration: BoxDecoration(
+              color: Colors.black,
+              borderRadius: BorderRadius.circular(30.0),
+            ),
+          ),
+        ),
+        Padding(
+          padding: EdgeInsets.only(top: 16.0),
+        ),
+        Text(
+          'Sudah memiliki akun?',
+          style: TextStyle(
+            color: Colors.black,
+            fontSize: 12.0,
+          ),
+        ),
+        Padding(
+          padding: EdgeInsets.only(top: 16.0),
+        ),
+        InkWell(
+          onTap: () {
+            Navigator.push(context,
+                MaterialPageRoute(
+                    builder: (context) => LoginPage()
+                ));
+          },
+          child: Container(
+            padding: EdgeInsets.symmetric(vertical: 8.0),
+            width: double.infinity,
+            child: Text(
+              'Login',
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 16.0,
+              ),
+              textAlign: TextAlign.center,
+            ),
+            decoration: BoxDecoration(
+              color: Colors.black,
+              borderRadius: BorderRadius.circular(30.0),
+            ),
+          ),
+        ),
+      ],
+    );
+  }
 }

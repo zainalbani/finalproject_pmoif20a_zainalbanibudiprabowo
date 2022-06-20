@@ -3,6 +3,7 @@ import 'package:finalproject_pmoif20a_zainal/screens/Penyakit_Kucing.dart';
 import 'package:finalproject_pmoif20a_zainal/screens/Jenis_Kucing.dart';
 import 'package:finalproject_pmoif20a_zainal/screens/Penanganan.dart';
 import 'package:finalproject_pmoif20a_zainal/screens/Konsultasi.dart';
+import 'package:finalproject_pmoif20a_zainal/screens/Users.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -208,6 +209,33 @@ Widget _buildButton(BuildContext context) {
       ),
       Padding(
         padding: EdgeInsets.only(top: 16.0),
+      ),
+      Padding(
+        padding: EdgeInsets.only(top: 16.0),
+      ),
+      InkWell(
+        onTap: (){
+          Navigator.push(context,
+              MaterialPageRoute(
+                  builder: (context) => Users()
+              ));
+        },
+        child: Container(
+          padding: EdgeInsets.symmetric(vertical: 8.0),
+          width: double.infinity,
+          child: Text(
+            'Edit Users',
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 16.0,
+            ),
+            textAlign: TextAlign.center,
+          ),
+          decoration: BoxDecoration(
+            color: Colors.black,
+            borderRadius: BorderRadius.circular(30.0),
+          ),
+        ),
       ),
     ],
   );

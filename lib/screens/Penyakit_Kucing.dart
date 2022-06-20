@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:finalproject_pmoif20a_zainal/screens/Menu_Utama.dart';
 
 class PenyakitKucing extends StatelessWidget {
   const PenyakitKucing({Key? key}) : super(key: key);
@@ -8,7 +9,15 @@ class PenyakitKucing extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: Image.asset('assets/images/logo.png'),
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back_ios_new),
+          onPressed: (){
+            Navigator.push(context,
+                MaterialPageRoute(
+                    builder: (context) => const MenuUtama()
+                ));
+          },
+        ),
         title: Text("SmartCat"),
         backgroundColor: Colors.black,
         actions: [

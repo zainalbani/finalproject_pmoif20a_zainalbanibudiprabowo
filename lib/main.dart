@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
       title: 'SmartCat',
       theme: ThemeData(
         primarySwatch: Colors.blue,
-        primaryColor: Colors.white,canvasColor: Colors.transparent,
+        primaryColor: Colors.white,canvasColor: Colors.white,
       ),
       home: splashscreen(),
     );
