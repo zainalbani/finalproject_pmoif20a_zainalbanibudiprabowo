@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 
-class Diskusi extends StatelessWidget {
-  const Diskusi ({Key? key}) : super(key: key);
+class DokterD extends StatelessWidget {
+  const DokterD ({Key? key}) : super(key: key);
 
 
   @override
@@ -25,7 +25,7 @@ class Diskusi extends StatelessWidget {
  body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          Text('FORUM DISKUSI',
+          Text('Dokter D',
             style: TextStyle(
               color: Colors.black,
               fontSize: 20,

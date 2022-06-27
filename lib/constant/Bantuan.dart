@@ -1,4 +1,4 @@
-String baseURL = "http://10.0.2.2/REST_APIProject/public/";
+String baseURL = "http://10.0.2.2/REST_APIproject/public/";
 //Users
 String gid = "";
 String gusername = "";

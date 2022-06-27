@@ -25,10 +25,10 @@ class _MenuUtamaState extends State<MenuUtama> {
         actions: [
           IconButton(icon: Icon(Icons.account_circle_sharp), onPressed: (){}),
           Container(
-            child: Align(
-              alignment: Alignment.centerLeft,
-              child: Text("Hello, User"),
-            )
+              child: Align(
+                alignment: Alignment.centerLeft,
+                child: Text("Hello, User"),
+              )
           )
         ],
       ),
@@ -133,33 +133,6 @@ Widget _buildButton(BuildContext context) {
         onTap: (){
           Navigator.push(context,
               MaterialPageRoute(
-                  builder: (context) => Penanganan()
-              ));
-        },
-        child: Container(
-          padding: EdgeInsets.symmetric(vertical: 8.0),
-          width: double.infinity,
-          child: Text(
-            'PENANGANAN KUCING',
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: 16.0,
-            ),
-            textAlign: TextAlign.center,
-          ),
-          decoration: BoxDecoration(
-            color: Colors.black,
-            borderRadius: BorderRadius.circular(30.0),
-          ),
-        ),
-      ),
-      Padding(
-        padding: EdgeInsets.only(top: 16.0),
-      ),
-      InkWell(
-        onTap: (){
-          Navigator.push(context,
-              MaterialPageRoute(
                   builder: (context) => Diskusi()
               ));
         },
@@ -210,9 +183,6 @@ Widget _buildButton(BuildContext context) {
       Padding(
         padding: EdgeInsets.only(top: 16.0),
       ),
-      Padding(
-        padding: EdgeInsets.only(top: 16.0),
-      ),
       InkWell(
         onTap: (){
           Navigator.push(context,
@@ -224,7 +194,7 @@ Widget _buildButton(BuildContext context) {
           padding: EdgeInsets.symmetric(vertical: 8.0),
           width: double.infinity,
           child: Text(
-            'Edit Users',
+            'EDIT USERS',
             style: TextStyle(
               color: Colors.white,
               fontSize: 16.0,
@@ -240,4 +210,3 @@ Widget _buildButton(BuildContext context) {
     ],
   );
 }
-

@@ -1,4 +1,5 @@
 
+import 'package:finalproject_pmoif20a_zainal/constant/Bantuan.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
@@ -48,7 +49,7 @@ class _LoginPageState extends State<LoginPage> {
   Future <void> login() async{
     if(controllerpassword.text.isNotEmpty && controllerusername.text.isNotEmpty) {
      http.Response response =
-     await http.post(Uri.parse('http://10.0.2.2/REST_APiproject/public/'),
+     await http.post(Uri.parse(baseURL),
          body:
          ({'username':controllerusername.text,
            'password':controllerpassword.text
@@ -68,7 +69,10 @@ class _LoginPageState extends State<LoginPage> {
       ScaffoldMessenger.of(context)
           .showSnackBar(SnackBar(content: Text("Isian tidak boleh kosong")));
     }
-  }
+    _setHeaders() => {
+      'Content-type': 'application/json',
+      'Accept': 'application/json',
+    };  }
 
 
   Widget _iconLogin() {

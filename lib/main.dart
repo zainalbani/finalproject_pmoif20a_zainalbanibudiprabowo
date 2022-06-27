@@ -2,6 +2,7 @@ import 'package:finalproject_pmoif20a_zainal/splashscreen.dart';
 import 'package:flutter/material.dart';
 
 
+
 void main() {
   runApp(MyApp());
 }
@@ -18,6 +19,7 @@ class MyApp extends StatelessWidget {
         primaryColor: Colors.white,canvasColor: Colors.white,
       ),
       home: splashscreen(),
+
     );
   }
 }
