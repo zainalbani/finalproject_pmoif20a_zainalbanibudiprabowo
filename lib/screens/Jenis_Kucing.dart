@@ -1,6 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:finalproject_pmoif20a_zainal/screens/kucing.dart';
+import 'package:finalproject_pmoif20a_zainal/screens/Menu_Utama.dart';
+import 'kucing.dart';
 
 
 class JenisKucing extends StatelessWidget {
@@ -10,7 +13,15 @@ class JenisKucing extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: Image.asset('assets/images/logo.png'),
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back_ios_new),
+          onPressed: (){
+            Navigator.push(context,
+                MaterialPageRoute(
+                    builder: (context) => const MenuUtama()
+                ));
+          },
+        ),
         title: Text("SmartCat"),
         backgroundColor: Colors.black,
         actions: [
@@ -23,72 +34,71 @@ class JenisKucing extends StatelessWidget {
           )
         ],
       ),
-      body: Container(
-        color: Colors.white,
-        padding: EdgeInsets.all(20.0),
-        child: ListView(
-          children: <Widget> [
-            Center(
-              child: Column(
-                children: <Widget>[
-                  _textField(),
-                ],
+      body: ListView(
+        children: [
+          SizedBox(width: 20,),
+          Row(
+            children: [
+              SizedBox(width: 120, height: 80,),
+              Text("Jenis Kucing",
+                style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold
+                ),
               ),
-            ),
-            new GambarKucing(gambar: 'assets/images/anggora.jpg',judul: 'Kucing Anggora',),
-            new GambarKucing(gambar: 'assets/images/persia.jpg',judul: 'Kucing Persia',)
-          ],
-        ),
-      ),
+            ],
+          ),
+          Itemlist(categoryKucing: listkucing,),
+        ],
+      )
     );
   }
 }
-Widget _textField() {
-  return Column(
-    children: <Widget>[
-      Text(
-        'Jenis Kucing',
-        style: TextStyle(
-          color: Colors.black,
-          fontSize: 22.0,
-        ),
-      ),
-      Padding(
-        padding: EdgeInsets.only(top: 12.0),
-      ),
-    ],
-  );
-}
-class GambarKucing extends StatelessWidget {
 
-GambarKucing({required this.gambar, required this.judul});
+class Itemlist extends StatelessWidget {
+  final List<Kucing> categoryKucing;
+  const Itemlist({Key? key, required this.categoryKucing}) : super(key: key);
 
-final String gambar;
-final String judul;
   @override
   Widget build(BuildContext context) {
-    return new Container(
-        padding: EdgeInsets.all(15.0),
-        child: new Center(
-            child: new Row(
-              children: <Widget>[
-                new Image.asset(gambar,
-                width: 175.0,
-                ),
-                new Container(
-                  child: new Center(
-                    child: new Column(
-                  children: <Widget>[
-                    new Text(judul),
-                    new Text("Kucing kucing")
-                  ],
-                    )
+    return Column(
+      children: categoryKucing.map((e) => Itemcard(kucing: e,)).toList(),
+    );
+  }
+}
 
-                  )
-                )
-              ],
-            )
-        )
+class Itemcard extends StatelessWidget {
+  final Kucing kucing;
+  const Itemcard({Key? key, required this.kucing}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      elevation: 2.0,
+      margin: const EdgeInsets.symmetric(
+        horizontal: 20.0,
+        vertical: 10.0
+      ),
+      child: Row(
+        children: [
+          Container(
+            width: 120,
+            padding: const EdgeInsets.all(10.0),
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(8.0),
+              child: Image.asset(kucing.image),
+            ),
+          ),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(kucing.nama),
+              Text(kucing.category),
+            ],
+          ),
+          const SizedBox(width: 12.0,),
+        ],
+      ),
     );
   }
 }

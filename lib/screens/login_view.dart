@@ -1,3 +1,5 @@
+import 'dart:convert';
+import 'package:crypto/crypto.dart';
 
 import 'package:finalproject_pmoif20a_zainal/constant/Bantuan.dart';
 import 'package:flutter/cupertino.dart';
@@ -7,18 +9,63 @@ import 'package:finalproject_pmoif20a_zainal/constants.dart';
 import 'package:finalproject_pmoif20a_zainal/screens/register_view.dart';
 import 'package:finalproject_pmoif20a_zainal/screens/Menu_Utama.dart';
 
-
 class LoginPage extends StatefulWidget {
-
-
   @override
   State<LoginPage> createState() => _LoginPageState();
 }
 
 class _LoginPageState extends State<LoginPage> {
-
   var controllerusername = TextEditingController();
   var controllerpassword = TextEditingController();
+
+  _get() async {
+    var respond = await http.get(Uri.parse(baseURL +
+
+        "users/" +
+        controllerusername.text +
+        "/" +
+        controllerpassword.text));
+    var respond2 = await http.get(Uri.parse(baseURL +
+         "admin/" +
+        controllerusername.text +
+        "/" +
+        controllerpassword.text));
+    var respond3 = await http.get(Uri.parse(baseURL +
+        "dokter/" +
+        controllerusername.text +
+        "/" +
+        controllerpassword.text));
+    var data = jsonDecode(respond.body);
+    var dataAdmin = jsonDecode(respond2.body);
+    var dataDokter = jsonDecode(respond3.body);
+    if (respond.statusCode == 200) {
+        ScaffoldMessenger.of(context)
+            .showSnackBar(const SnackBar(content: Text("Berhasil")));
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) => MenuUtama()));
+      } else {
+        ScaffoldMessenger.of(context)
+            .showSnackBar(const SnackBar(content: Text("Gagal")));
+      }
+      if (respond2.statusCode == 200) {
+        ScaffoldMessenger.of(context)
+            .showSnackBar(const SnackBar(content: Text("Berhasil")));
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) => MenuUtama()));
+      } else {
+        ScaffoldMessenger.of(context)
+            .showSnackBar(const SnackBar(content: Text("Gagal")));
+      }
+    if (respond3.statusCode == 200) {
+      ScaffoldMessenger.of(context)
+          .showSnackBar(const SnackBar(content: Text("Berhasil")));
+      Navigator.push(
+          context, MaterialPageRoute(builder: (context) => MenuUtama()));
+    } else {
+      ScaffoldMessenger.of(context)
+          .showSnackBar(const SnackBar(content: Text("Gagal")));
+    }
+  }
 
   Widget build(BuildContext context) {
     return Scaffold(
@@ -46,34 +93,6 @@ class _LoginPageState extends State<LoginPage> {
       ),
     );
   }
-  Future <void> login() async{
-    if(controllerpassword.text.isNotEmpty && controllerusername.text.isNotEmpty) {
-     http.Response response =
-     await http.post(Uri.parse(baseURL),
-         body:
-         ({'username':controllerusername.text,
-           'password':controllerpassword.text
-         }));
-     print(response.statusCode);
-     print(response.body);
-     if(response.statusCode==200){
-       Navigator.push(context,
-           MaterialPageRoute(
-           builder: (context) => MenuUtama()
-           ));
-     } else{
-       ScaffoldMessenger.of(context)
-           .showSnackBar(SnackBar(content: Text("Invalid")));
-     }
-    } else{
-      ScaffoldMessenger.of(context)
-          .showSnackBar(SnackBar(content: Text("Isian tidak boleh kosong")));
-    }
-    _setHeaders() => {
-      'Content-type': 'application/json',
-      'Accept': 'application/json',
-    };  }
-
 
   Widget _iconLogin() {
     return Image.asset(
@@ -99,7 +118,6 @@ class _LoginPageState extends State<LoginPage> {
                 width: 1.5,
               ),
             ),
-
             focusedBorder: UnderlineInputBorder(
               borderSide: BorderSide(
                 color: Colors.black26,
@@ -108,8 +126,7 @@ class _LoginPageState extends State<LoginPage> {
             ),
             icon: Icon(Icons.account_circle_outlined),
             hintText: "Username",
-            hintStyle: TextStyle(
-                color: Colors.blueAccent),
+            hintStyle: TextStyle(color: Colors.blueAccent),
           ),
           style: TextStyle(color: Colors.black),
           autofocus: false,
@@ -153,10 +170,7 @@ class _LoginPageState extends State<LoginPage> {
         ),
         InkWell(
           onTap: () {
-            Navigator.push(context,
-                MaterialPageRoute(
-                    builder: (context) => MenuUtama()
-                ));
+            _get();
           },
           child: Container(
             padding: EdgeInsets.symmetric(vertical: 8.0),
@@ -166,30 +180,6 @@ class _LoginPageState extends State<LoginPage> {
               style: TextStyle(
                 color: Colors.white,
                 fontSize: 16.0,
-              ),
-              textAlign: TextAlign.center,
-            ),
-            decoration: BoxDecoration(
-              color: Colors.black,
-              borderRadius: BorderRadius.circular(30.0),
-            ),
-          ),
-        ),
-        Padding(
-          padding: EdgeInsets.only(top: 16.0),
-        ),
-        InkWell(
-          onTap: () {
-            login();
-          },
-          child: Container(
-            padding: EdgeInsets.symmetric(vertical: 8.0),
-            width: double.infinity,
-            child: Text(
-              'Login Dokter',
-              style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 16.0
               ),
               textAlign: TextAlign.center,
             ),
@@ -215,9 +205,7 @@ class _LoginPageState extends State<LoginPage> {
         InkWell(
           onTap: () {
             Navigator.push(context,
-                MaterialPageRoute(
-                    builder: (context) => RegisterPage()
-                ));
+                MaterialPageRoute(builder: (context) => RegisterPage()));
           },
           child: Container(
             padding: EdgeInsets.symmetric(vertical: 8.0),
