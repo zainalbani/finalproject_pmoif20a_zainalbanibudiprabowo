@@ -1,3 +1,4 @@
+import 'package:finalproject_pmoif20a_zainal/screens/Konsultasi.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 
@@ -9,7 +10,15 @@ class DokterF extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: Image.asset('assets/images/logo.png'),
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back_ios_new),
+          onPressed: (){
+            Navigator.push(context,
+                MaterialPageRoute(
+                    builder: (context) => const Konsultasi()
+                ));
+          },
+        ),
         title: Text("SmartCat"),
         backgroundColor: Colors.black,
         actions: [

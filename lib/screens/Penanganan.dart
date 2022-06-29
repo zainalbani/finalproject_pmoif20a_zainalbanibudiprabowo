@@ -104,6 +104,7 @@ class customCard extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
             ListTile(
+              
               leading: Icon(Icons.health_and_safety),
               title: Text(xTitle),
               subtitle: Text(xSubtitle,
