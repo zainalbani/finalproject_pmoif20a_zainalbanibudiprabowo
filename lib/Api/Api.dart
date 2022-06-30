@@ -9,7 +9,7 @@ class CallApi {
       await http.post(Uri.parse(baseURL + apiUrl), body: data);
       print(hasilRespons.statusCode);
       print(hasilRespons.body);
-      if (hasilRespons.statusCode == 200) {
+      if (hasilRespons.statusCode == 201) {
         ScaffoldMessenger.of(context).showSnackBar(
             const SnackBar(content: Text("Simpan data berhasil")));
         return true;
@@ -18,6 +18,7 @@ class CallApi {
       }
     } on Exception catch (e) {
       print(e.toString());
+      return false;
     }
   }
   Future putData(data, apiUrl, BuildContext context) async {

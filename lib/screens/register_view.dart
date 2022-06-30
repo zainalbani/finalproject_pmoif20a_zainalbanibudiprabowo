@@ -17,15 +17,30 @@ class _RegisterPageState extends State<RegisterPage> {
   TextEditingController controlleremail = TextEditingController();
   TextEditingController controllerrepassword = TextEditingController();
 
-  _register() async {
+  _register($value) async {
     var data = {
       'username': controllerusername.text,
       'password': controllerpassword.text,
       'email': controlleremail.text,
-      'repassword': controllerrepassword.text,
     };
+    if(controllerpassword.text != controllerrepassword.text){
+      ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text("Repassword harus sama!!!")));
+    }
+    if ($value == 'users'){
     bool res = await CallApi().postData(data, 'users', context);
-    Navigator.pop(context);
+    if(res){
+    Navigator.pop(context);}
+    else{
+      print("janggal");
+    }}else{
+      bool res = await CallApi().postData(data, 'dokter', context);
+      if(res){
+        Navigator.pop(context);}
+      else{
+        print("janggal");
+      }
+    }
   }
 
   @override
@@ -182,7 +197,7 @@ class _RegisterPageState extends State<RegisterPage> {
         ),
         InkWell(
           onTap: (){
-            _register();
+            _register("users");
           },
           child: Container(
             padding: EdgeInsets.symmetric(vertical: 8.0),
@@ -206,7 +221,7 @@ class _RegisterPageState extends State<RegisterPage> {
         ),
         InkWell(
           onTap: (){
-            _register();
+            _register("dokter");
           },
           child: Container(
             padding: EdgeInsets.symmetric(vertical: 8.0),
