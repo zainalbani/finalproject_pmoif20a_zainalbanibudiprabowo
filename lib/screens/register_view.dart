@@ -33,14 +33,21 @@ class _RegisterPageState extends State<RegisterPage> {
     Navigator.pop(context);}
     else{
       print("janggal");
-    }}else{
-      bool res = await CallApi().postData(data, 'dokter', context);
+    }}if ($value == 'admin'){
+      bool res = await CallApi().postData(data, 'admin', context);
       if(res){
         Navigator.pop(context);}
-      else{
+      else {
         print("janggal");
-      }
+      }}else{
+    bool res = await CallApi().postData(data, 'dokter', context);
+    if(res){
+    Navigator.pop(context);}
+    else{
+    print("janggal");
     }
+    }
+
   }
 
   @override
@@ -218,6 +225,29 @@ class _RegisterPageState extends State<RegisterPage> {
         ),
         Padding(
           padding: EdgeInsets.only(top: 16.0),
+        ),
+        InkWell(
+          onTap: (){
+            _register("admin");
+          },
+          child: Container(
+            padding: EdgeInsets.symmetric(vertical: 8.0),
+            width: double.infinity,
+            child: Text(
+              'Register Admin',
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 16.0,
+              ),
+              textAlign: TextAlign.center,
+            ),
+            decoration: BoxDecoration(
+              color: Colors.black,
+              borderRadius: BorderRadius.circular(30.0),
+            ),
+          ),
+        ),Padding(
+          padding: EdgeInsets.only(top: 20.0),
         ),
         InkWell(
           onTap: (){

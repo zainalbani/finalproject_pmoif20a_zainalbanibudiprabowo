@@ -1,20 +1,21 @@
-import 'package:finalproject_pmoif20a_zainal/screens/Diskusi.dart';
-import 'package:finalproject_pmoif20a_zainal/screens/Penyakit_Kucing.dart';
-import 'package:finalproject_pmoif20a_zainal/screens/Jenis_Kucing.dart';
+import 'package:finalproject_pmoif20a_zainal/screens/admin/diskusi_admin.dart';
+import 'package:finalproject_pmoif20a_zainal/screens/admin/Penyakit_admin.dart';
+import 'package:finalproject_pmoif20a_zainal/screens/admin/Jeniskucing_admin.dart';
 import 'package:finalproject_pmoif20a_zainal/screens/Penanganan.dart';
-import 'package:finalproject_pmoif20a_zainal/screens/Konsultasi.dart';
+import 'package:finalproject_pmoif20a_zainal/screens/admin/konsultasi_dok_admin.dart';
 import 'package:finalproject_pmoif20a_zainal/screens/Users.dart';
+import 'package:finalproject_pmoif20a_zainal/screens/login_view.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class MenuUtama extends StatefulWidget {
-  const MenuUtama({Key? key}) : super(key: key);
+class MenuAdmin extends StatefulWidget {
+  const MenuAdmin({Key? key}) : super(key: key);
 
   @override
-  State<MenuUtama> createState() => _MenuUtamaState();
+  State<MenuAdmin> createState() => _MenuAdminState();
 }
 
-class _MenuUtamaState extends State<MenuUtama> {
+class _MenuAdminState extends State<MenuAdmin> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,7 +28,7 @@ class _MenuUtamaState extends State<MenuUtama> {
           Container(
               child: Align(
                 alignment: Alignment.centerLeft,
-                child: Text("Hello, User"),
+                child: Text("Hello, Admin"),
               )
           )
         ],
@@ -57,7 +58,7 @@ Widget _textField() {
   return Column(
     children: <Widget>[
       Text(
-        'MENU UTAMA',
+        'MENU ADMIN',
         style: TextStyle(fontWeight: FontWeight.bold,
           fontSize: 30.0,
         ),
@@ -79,7 +80,7 @@ Widget _buildButton(BuildContext context) {
         onTap: (){
           Navigator.push(context,
               MaterialPageRoute(
-                  builder: (context) => JenisKucing()
+                  builder: (context) => JenisKucingAdmin()
               ));
         },
         child: Container(
@@ -106,7 +107,7 @@ Widget _buildButton(BuildContext context) {
         onTap: (){
           Navigator.push(context,
               MaterialPageRoute(
-                  builder: (context) => PenyakitKucing()
+                  builder: (context) => PenyakitAdmin()
               ));
         },
         child: Container(
@@ -133,7 +134,7 @@ Widget _buildButton(BuildContext context) {
         onTap: (){
           Navigator.push(context,
               MaterialPageRoute(
-                  builder: (context) => Diskusi()
+                  builder: (context) => DiskusiAdmin()
               ));
         },
         child: Container(
@@ -160,7 +161,7 @@ Widget _buildButton(BuildContext context) {
         onTap: (){
           Navigator.push(context,
               MaterialPageRoute(
-                  builder: (context) => Konsultasi()
+                  builder: (context) => Konsultasidok()
               ));
         },
         child: Container(
@@ -168,6 +169,33 @@ Widget _buildButton(BuildContext context) {
           width: double.infinity,
           child: Text(
             'KONSULTASI DOKTER',
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 16.0,
+            ),
+            textAlign: TextAlign.center,
+          ),
+          decoration: BoxDecoration(
+            color: Colors.black,
+            borderRadius: BorderRadius.circular(30.0),
+          ),
+        ),
+      ),
+      Padding(
+        padding: EdgeInsets.only(top: 16.0),
+      ),
+      InkWell(
+        onTap: (){
+          Navigator.push(context,
+              MaterialPageRoute(
+                  builder: (context) => Users()
+              ));
+        },
+        child: Container(
+          padding: EdgeInsets.symmetric(vertical: 8.0),
+          width: double.infinity,
+          child: Text(
+            'EDIT USERS',
             style: TextStyle(
               color: Colors.white,
               fontSize: 16.0,

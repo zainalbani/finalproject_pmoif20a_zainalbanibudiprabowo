@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:finalproject_pmoif20a_zainal/screens/Menu_Utama.dart';
+import 'package:finalproject_pmoif20a_zainal/screens/Penyakit_Kucing.dart';
 
 class Penanganan extends StatelessWidget {
   const Penanganan ({Key? key}) : super(key: key);
@@ -15,7 +16,7 @@ class Penanganan extends StatelessWidget {
           onPressed: (){
             Navigator.push(context,
                 MaterialPageRoute(
-                    builder: (context) => const MenuUtama()
+                    builder: (context) => const PenyakitKucing()
                 ));
           },
         ),

@@ -2,7 +2,6 @@ import 'package:finalproject_pmoif20a_zainal/screens/Menu_Utama.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'kucing.dart';
 
 
 class JenisKucing extends StatelessWidget {

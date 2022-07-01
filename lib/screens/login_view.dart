@@ -1,7 +1,8 @@
 import 'dart:convert';
 import 'package:crypto/crypto.dart';
-
 import 'package:finalproject_pmoif20a_zainal/constant/Bantuan.dart';
+import 'package:finalproject_pmoif20a_zainal/screens/admin/menu_admin.dart';
+import 'package:finalproject_pmoif20a_zainal/screens/dokter/menu_dok.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
@@ -18,52 +19,57 @@ class _LoginPageState extends State<LoginPage> {
   var controllerusername = TextEditingController();
   var controllerpassword = TextEditingController();
 
-  _get() async {
+  _get(nilai) async {
     var respond = await http.get(Uri.parse(baseURL +
-
-        "users/" +
+        nilai +
         controllerusername.text +
         "/" +
         controllerpassword.text));
-    var respond2 = await http.get(Uri.parse(baseURL +
-         "admin/" +
-        controllerusername.text +
-        "/" +
-        controllerpassword.text));
-    var respond3 = await http.get(Uri.parse(baseURL +
-        "dokter/" +
-        controllerusername.text +
-        "/" +
-        controllerpassword.text));
+    // var respond2 = await http.get(Uri.parse(baseURL +
+    //     "admin/" +
+    //     controllerusername.text +
+    //     "/" +
+    //     controllerpassword.text));
+    // var respond3 = await http.get(Uri.parse(baseURL +
+    //     "dokter/" +
+    //     controllerusername.text +
+    //     "/" +
+    //     controllerpassword.text));
     var data = jsonDecode(respond.body);
-    var dataAdmin = jsonDecode(respond2.body);
-    var dataDokter = jsonDecode(respond3.body);
-    if (respond.statusCode == 200) {
-        ScaffoldMessenger.of(context)
-            .showSnackBar(const SnackBar(content: Text("Berhasil")));
-        Navigator.push(
-            context, MaterialPageRoute(builder: (context) => MenuUtama()));
-      } else {
-        ScaffoldMessenger.of(context)
-            .showSnackBar(const SnackBar(content: Text("Gagal")));
-      }
-      if (respond2.statusCode == 200) {
-        ScaffoldMessenger.of(context)
-            .showSnackBar(const SnackBar(content: Text("Berhasil")));
-        Navigator.push(
-            context, MaterialPageRoute(builder: (context) => MenuUtama()));
-      } else {
-        ScaffoldMessenger.of(context)
-            .showSnackBar(const SnackBar(content: Text("Gagal")));
-      }
-    if (respond3.statusCode == 200) {
+    var dataAdmin = jsonDecode(respond.body);
+    var dataDokter = jsonDecode(respond.body);
+
+    print(data);
+    if (respond.statusCode == 200 && nilai == "users/") {
       ScaffoldMessenger.of(context)
-          .showSnackBar(const SnackBar(content: Text("Berhasil")));
+          .showSnackBar(const SnackBar(content: Text("Anda Berhasil Masuk")));
       Navigator.push(
           context, MaterialPageRoute(builder: (context) => MenuUtama()));
-    } else {
+    }else if (respond.statusCode == 200 && nilai == "admin/") {
       ScaffoldMessenger.of(context)
-          .showSnackBar(const SnackBar(content: Text("Gagal")));
+          .showSnackBar(const SnackBar(content: Text("Anda Berhasil Masuk")));
+      Navigator.push(
+          context, MaterialPageRoute(builder: (context) => MenuAdmin()));
+    }else if (respond.statusCode == 200 && nilai == "dokter/") {
+      ScaffoldMessenger.of(context)
+          .showSnackBar(const SnackBar(content: Text("Anda Berhasil Masuk")));
+      Navigator.push(
+          context, MaterialPageRoute(builder: (context) => Menudok()));
+    }
+    // else if (respond2.statusCode == 200) {
+    //   ScaffoldMessenger.of(context)
+    //       .showSnackBar(const SnackBar(content: Text("Anda Berhasil Masuk")));
+    //   Navigator.push(
+    //       context, MaterialPageRoute(builder: (context) => MenuAdmin()));
+    // } else if (respond3.statusCode == 200) {
+    //   ScaffoldMessenger.of(context)
+    //       .showSnackBar(const SnackBar(content: Text("Anda Berhasil Masuk")));
+    //   Navigator.push(
+    //       context, MaterialPageRoute(builder: (context) => MenuUtama()));
+    // }
+    else {
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+          content: Text("Masukkan Ulang Username dan Password")));
     }
   }
 
@@ -170,13 +176,67 @@ class _LoginPageState extends State<LoginPage> {
         ),
         InkWell(
           onTap: () {
-            _get();
+            // Navigator.push(
+            //     context, MaterialPageRoute(builder: (context) => MenuUtama()));
+            _get("users/");
           },
           child: Container(
             padding: EdgeInsets.symmetric(vertical: 8.0),
             width: double.infinity,
             child: Text(
               'Login',
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 16.0,
+              ),
+              textAlign: TextAlign.center,
+            ),
+            decoration: BoxDecoration(
+              color: Colors.black,
+              borderRadius: BorderRadius.circular(30.0),
+            ),
+          ),
+        ),
+        Padding(
+          padding: EdgeInsets.only(top: 20.0),
+        ),
+        InkWell(
+          onTap: () {
+            // Navigator.push(
+            //     context, MaterialPageRoute(builder: (context) => MenuAdmin()));
+            _get("admin/");
+          },
+          child: Container(
+            padding: EdgeInsets.symmetric(vertical: 8.0),
+            width: double.infinity,
+            child: Text(
+              'Admin',
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 16.0,
+              ),
+              textAlign: TextAlign.center,
+            ),
+            decoration: BoxDecoration(
+              color: Colors.black,
+              borderRadius: BorderRadius.circular(30.0),
+            ),
+          ),
+        ),
+        Padding(
+          padding: EdgeInsets.only(top: 20.0),
+        ),
+        InkWell(
+          onTap: () {
+            // Navigator.push(
+            //     context, MaterialPageRoute(builder: (context) => Menudok()));
+            _get("dokter/");
+          },
+          child: Container(
+            padding: EdgeInsets.symmetric(vertical: 8.0),
+            width: double.infinity,
+            child: Text(
+              'Dokter',
               style: TextStyle(
                 color: Colors.white,
                 fontSize: 16.0,
