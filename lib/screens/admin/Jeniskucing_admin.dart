@@ -1,11 +1,49 @@
-import 'package:finalproject_pmoif20a_zainal/screens/admin/menu_admin.dart';
+import 'dart:convert';
+import 'dart:async';
+import 'package:http/http.dart' as http;
+import 'package:finalproject_pmoif20a_zainal/screens/Menu_Utama.dart';
+import 'package:finalproject_pmoif20a_zainal/constant/Bantuan.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
-
-class JenisKucingAdmin extends StatelessWidget {
+class JenisKucingAdmin extends StatefulWidget {
   const JenisKucingAdmin({Key? key}) : super(key: key);
+
+  @override
+  State<JenisKucingAdmin> createState() => _JenisKucingAdminState();
+}
+
+class _JenisKucingAdminState extends State<JenisKucingAdmin> {
+
+
+  Future<void> loadData() async {
+    // baseURL diambil dari constant
+    // 'isi' merupakan nilai endpoint yang akan diambil datanya
+    var dataURL = Uri.parse(baseURL + 'jenis');
+    http.Response response = await http.get(dataURL);
+
+    setState(() {
+      List widgets = jsonDecode(response.body);
+      print(widgets);
+      // Ditambahkan nilai dari constant yang akan digunakan
+      gjeniskucing = widgets[0]['jeniskucing'];
+      gpenjelasan = widgets[0]['penjelasan'];
+      gjeniskucing1 = widgets[1]['jeniskucing'];
+      gpenjelasan1 = widgets[1]['penjelasan'];
+      gjeniskucing2 = widgets[2]['jeniskucing'];
+      gpenjelasan2 = widgets[2]['penjelasan'];
+      gjeniskucing3 = widgets[3]['jeniskucing'];
+      gpenjelasan3 = widgets[3]['penjelasan'];
+
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    loadData();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -13,62 +51,54 @@ class JenisKucingAdmin extends StatelessWidget {
       appBar: AppBar(
         leading: IconButton(
           icon: const Icon(Icons.arrow_back_ios_new),
-          onPressed: (){
+          onPressed: () {
             Navigator.push(context,
-                MaterialPageRoute(
-                    builder: (context) => const MenuAdmin()
-                ));
+                MaterialPageRoute(builder: (context) => const MenuUtama()));
           },
         ),
         title: Text("SmartCat"),
         backgroundColor: Colors.black,
         actions: [
-          IconButton(icon: Icon(Icons.account_circle_sharp), onPressed: (){}),
+          IconButton(icon: Icon(Icons.account_circle_sharp), onPressed: () {}),
           Container(
               child: Align(
                 alignment: Alignment.centerLeft,
-                child: Text("Hello, Admin"),
-              )
-          )
+                child: Text("Hello, User"),
+              ))
         ],
       ),
       body: Container(
         color: Colors.white,
         padding: EdgeInsets.all(20.0),
         child: ListView(
-          children: <Widget> [
+          children: <Widget>[
             Center(
               child: Column(
                 children: <Widget>[
                   _textField(),
                   customCard(
-                      xTitle: 'Kucing Anggora',
-                      xSubtitle:  'Bentuk Kepala Segitiga, Mata Seperti Almond, Tubuh Panjang dan Langsing, Hidung Mancung, Bulu Panjang',
-                      xImage: 'assets/images/anggora.jpg'
+                    // xTitle: 'Kucing Anggora',
+                    // xSubtitle:
+                    //     'Bentuk Kepala Segitiga, Mata Seperti Almond, Tubuh Panjang dan Langsing, Hidung Mancung, Bulu Panjang',
+                    xImage: 'assets/images/anggora.jpg',
+                    xSubtitle: gpenjelasan,
+                    xTitle: gjeniskucing,
+
                   ),
                   customCard(
-                      xTitle: 'Kucing Persia',
-                      xSubtitle:  'Bulu Tebal, Mata Bulat dan berwarna cerah, Hidung pesek, Telinga kecil, Kepala berukuran besar, Kaki pendek, Ekor panjang dan berbulu tebal',
-                      xImage: 'assets/images/persia.jpg'
-                  ),
+                      xSubtitle: gpenjelasan1,
+                      xTitle: gjeniskucing1,
+                      xImage: 'assets/images/persia.jpg'),
                   customCard(
-                      xTitle: 'Kucing Bengal',
-                      xSubtitle:  'Bentuk kepala yang cukup besar dan panjang, Bagian leher yang cukup besar dan sedikit berotot, Ukuran hidung yang cukup besar dan lebar biasanya hidung berwarna merah dan terdapat garis hitam, Bentuk telinga yang runcing dan tegak ke atas, Mata lebar dan biasanya berwarna hijau, Warna bulu khas warna cokelat dan motif totol kehitaman ',
-                      xImage: 'assets/images/bengal.png'
-                  ),
+                      xSubtitle: gpenjelasan2,
+                      xTitle: gjeniskucing2,
+                      xImage: 'assets/images/bengal.png'),
                   customCard(
-                      xTitle: 'Kucing Siam',
-                      xSubtitle:  'Berwarna krem kehitaman pada bagian tubuh dengan telinga, wajah, ekor, dan kaki berwarna hitam. Tubuh berbentuk ramping, panjang, dan berotot. Tungkai dan ekor yang panjang dan langsing dengan warna kontras tinggi. Mata biru akibat genetika khas sehingga tidak ada kucing siam yang tidak bermata biru. Bulu pendek, mengkilap, licin, dan melekat rapat dengan tekstur yang sangat halus dan tipis sehingga tidak sering rontok. Telinga besar dan lebar pada bagian pangkal dengan ujung runcing berbentuk segitiga. ',
-                      xImage: 'assets/images/siam.jpg'
-                  ),
-                  customCard(
-                      xTitle: 'Kucing Ragdoll',
-                      xSubtitle:  'Ukurannya besar, Kepala ragdoll berukuran medium, Hidung medium lebar pada bagian dasar dan berbentuk melingkar, Badan besar dan berat, Cakar besar bulat dan kokoh, Bulunya panjang tebal, mengkilap, menutupi seluruh badan dan tidak mudah kusut',
-                      xImage: 'assets/images/ragdoll.jpg'
-                  ),
+                      xSubtitle: gpenjelasan3,
+                      xTitle: gjeniskucing3,
+                      xImage: 'assets/images/siam.jpg'),
 
                 ],
-
               ),
             ),
           ],
@@ -95,31 +125,31 @@ Widget _textField() {
 }
 
 class customCard extends StatelessWidget {
-
   final String xTitle, xSubtitle, xImage;
 
   customCard({
+    required this.xImage,
     required this.xTitle,
     required this.xSubtitle,
-    required this.xImage,
   });
+
   @override
   Widget build(BuildContext context) {
     return Center(
       child: Card(
         child: Column(
           mainAxisSize: MainAxisSize.min,
+          // Listview Builder - Untuk melooping struktur data/widgetnya
           children: <Widget>[
-            SizedBox(
-                width: 500,
-                height: 200,
-                child: Image.asset(xImage)
-            ),
+
+            SizedBox(width: 500, height: 200, child: Image.asset(xImage)),
             ListTile(
-              title: Text(xTitle,
+              title: Text(
+                xTitle,
                 textAlign: TextAlign.center,
               ),
-              subtitle: Text(xSubtitle,
+              subtitle: Text(
+                xSubtitle,
                 textAlign: TextAlign.center,
               ),
             ),
