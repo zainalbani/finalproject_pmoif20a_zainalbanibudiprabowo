@@ -13,9 +13,18 @@ String gjeniskucing = "";
 String gjeniskucing1 = "";
 String gjeniskucing2 = "";
 String gjeniskucing3 = "";
-
-
 String gpenjelasan = "";
 String gpenjelasan1 = "";
 String gpenjelasan2 = "";
 String gpenjelasan3 = "";
+String gpenjelasan4 = "";
+String gnamapenyakit ="";
+String gnamapenyakit1 = "";
+String gnamapenyakit2 ="";
+String gnamapenyakit3 = "";
+String gnamapenyakit4 = "";
+String gpenanganan ="";
+String gpenanganan1 = "";
+String gpenanganan2 ="";
+String gpenanganan3 = "";
+String gpenanganan4 = "";

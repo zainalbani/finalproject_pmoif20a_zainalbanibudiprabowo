@@ -80,7 +80,7 @@ Widget _buildButton(BuildContext context) {
         onTap: (){
           Navigator.push(context,
               MaterialPageRoute(
-                  builder: (context) => JenisKucingAdmin()
+                  builder: (context) => JenisAdmin()
               ));
         },
         child: Container(

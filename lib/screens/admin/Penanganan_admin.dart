@@ -1,11 +1,50 @@
+import 'dart:convert';
+import 'dart:async';
+import 'package:finalproject_pmoif20a_zainal/constant/PenangananEditDelete.dart';
+import 'package:http/http.dart' as http;
+import 'package:finalproject_pmoif20a_zainal/constant/Bantuan.dart';
+import 'package:finalproject_pmoif20a_zainal/screens/admin/Penyakit_admin.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:finalproject_pmoif20a_zainal/screens/Menu_Utama.dart';
-import 'package:finalproject_pmoif20a_zainal/screens/admin/Penyakit_admin.dart';
+import 'package:flutter/widgets.dart';
 
-class Penanganan extends StatelessWidget {
-  const Penanganan ({Key? key}) : super(key: key);
+class PenangananAdmin extends StatefulWidget {
+  const PenangananAdmin({Key? key}) : super(key: key);
 
+  @override
+  State<PenangananAdmin> createState() => _PenangananAdminState();
+}
+
+class _PenangananAdminState extends State<PenangananAdmin> {
+
+  Future<void> loadData() async {
+    // baseURL diambil dari constant
+    // 'isi' merupakan nilai endpoint yang akan diambil datanya
+    var dataURL = Uri.parse(baseURL + 'penanganan');
+    http.Response response = await http.get(dataURL);
+
+    setState(() {
+      List widgets = jsonDecode(response.body);
+      print(widgets);
+      // Ditambahkan nilai dari constant yang akan digunakan
+      gpenanganan = widgets[0]['penanganan'];
+      gpenjelasan = widgets[0]['penjelasan'];
+      gpenanganan1 = widgets[1]['penanganan'];
+      gpenjelasan1 = widgets[1]['penjelasan'];
+      gpenanganan2 = widgets[2]['penanganan'];
+      gpenjelasan2 = widgets[2]['penjelasan'];
+      gpenanganan3 = widgets[3]['penanganan'];
+      gpenjelasan3 = widgets[3]['penjelasan'];
+      gpenanganan4 = widgets[4]['penanganan'];
+      gpenjelasan4 = widgets[4]['penjelasan'];
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    loadData();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -44,24 +83,24 @@ class Penanganan extends StatelessWidget {
                 children: <Widget>[
                   _textField(),
                   customCard(
-                    xTitle: "Penanganan Infeksi Saluran Pernapasan Atas (ISPA)",
-                    xSubtitle: "Pengobatan yang dilakukan umumnya bersifat symptomatically (berdasaran gejala yang muncul). Jika terdapat kontak mata, biasanya diberikan obat mata topikal berupa tetes ataupun salep. Pada kasus infeksi saluran pernapasan yang penyebab utamanya adalah bakteri, maka akan diberikan antibiotik yang spesifik. Jika terjadi penyumbatan pada saluran nafas maka terapi menggunakan nebulizer sangat dibutuhkan. kita bisa melakukan perawatan dengan rutin membersihkan area mata, hidung dan mulut. Pemberian makanan lunak yang mudah dicerna serta aroma yang kuat akan merangsang nafsu makan kucing kita. Pemberian vitamin nafsu makan juga terkadang sangat dibutuhkan. Jika kondisi kucing kita sudah lemah dan penyakitnya bertambah parah maka sebaiknya kucing dirawat inap agar mendapat treatment intensif berupa pemberian cairan infus dan treatment lain yang dibutuhkan. Hindari pemberian obat flu manusia kepada kucing terutama obat yang mengandung paracetamol/acetaminophen. Hal tersebut dapat membahayakan kucing kita",
+                    xTitle: gpenanganan,
+                    xSubtitle: gpenjelasan,
                   ),
                   customCard(
-                    xTitle: "Penanganan Diabetes",
-                    xSubtitle: "1. Setiap kucing penderita diabetes bersifat unik dan terapi yang digunakan berbeda-beda. 2. Beberapa kucing penderita diabetes yang terlanjur parah saat pertama kali didiagnosis membutuhkan perawatan intensif di rumah sakit selama beberapa hari untuk mengatur kadar gula darahnya. 3. Bagi kebanyakan kucing penderita diabetes, suntikan insulin diperlukan untuk pengaturan glukosa darah yang memadai. 4. Lakukan tes glukosa ",
+                    xTitle: gpenanganan1,
+                    xSubtitle: gpenjelasan1,
                   ),
                   customCard(
-                    xTitle: "Penanganan Kanker",
-                    xSubtitle: "Pilihan pengobatan bervariasi dan bergantung pada jenis dan stadium kanker. Perawatan umum termasuk pembedahan, kemoterapi, radiasi dan imunoterapi atau kombinasi terapi. Keberhasilan pengobatan tergantung pada bentuk dan luasnya kanker serta agresivitas terapi. Tentu saja, deteksi dini adalah yang terbaik. Beberapa pemilik kucing memilih untuk tidak menjalani pengobatan kanker, dalam hal ini perawatan paliatif, termasuk pereda nyeri, harus dipertimbangkan. Terlepas dari bagaimana Anda melanjutkan setelah diagnosis kanker pada hewan peliharaan Anda, sangat penting untuk mempertimbangkan kualitas hidupnya saat membuat keputusan di masa depan. Beberapa kanker dapat disembuhkan, dan hampir semua pasien dapat menerima setidaknya beberapa manfaat dari pengobatan. Harap diperhatikan bahwa jika kanker yang diderita kucing Anda tidak dapat disembuhkan, masih banyak hal yang dapat Anda lakukan untuk membuat hewan peliharaan Anda merasa lebih baik. Jangan ragu untuk berbicara dengan dokter hewan tentang pilihan Anda. Dan ingat nutrisi yang baik dan perawatan penuh kasih dapat sangat meningkatkan kualitas hidup kucing Anda.",
+                    xTitle: gpenanganan2,
+                    xSubtitle: gpenjelasan2,
                   ),
                   customCard(
-                    xTitle: "Penanganan Penyakit Ginjal Kronis",
-                    xSubtitle: "Penyakit ginjal seperti gagal ginjal kronis adalah kondisi yang tampaknya tidak dapat disembuhkan, terutama yang dialami kucing yang lebih tua. Dokter hewan mungkin akan merekomendasikan terapi cairan, modifikasi makanan, obat tekanan darah, dialisis, atau transplantasi. Maka dari itu, penting untuk memastikan kucing melakukan pemeriksaan rutin di dokter hewan. Tindakan ini bisa menjadi langkah awal untuk mengetahui penyakit lebih awal agar bisa segera ditangani. ",
+                    xTitle: gpenanganan3,
+                    xSubtitle: gpenjelasan3,
                   ),
                   customCard(
-                    xTitle: "Rabies",
-                    xSubtitle: "Untuk mencegah rabies pada kucing peliharaan, kamu perlu memberikannya vaksin rabies. Pemberian vaksin rabies secara berkala pada kucing dapat menghindari potensi tinggi untuk terjangkit rabies",
+                    xTitle: gpenanganan4,
+                    xSubtitle: gpenjelasan4,
                   ),
                 ],
               ),
@@ -111,6 +150,13 @@ class customCard extends StatelessWidget {
               subtitle: Text(xSubtitle,
                 textAlign: TextAlign.justify,
               ),
+              trailing: IconButton(
+                icon: const Icon(Icons.edit),
+                onPressed: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => const PenangananEditDelete()));
+                },
+              ),
             ),
           ],
         ),
@@ -118,3 +164,4 @@ class customCard extends StatelessWidget {
     );
   }
 }
+

@@ -1,20 +1,21 @@
 import 'dart:convert';
 import 'dart:async';
+import 'package:finalproject_pmoif20a_zainal/constant/JenisEditDelete.dart';
+import 'package:finalproject_pmoif20a_zainal/screens/admin/menu_admin.dart';
 import 'package:http/http.dart' as http;
-import 'package:finalproject_pmoif20a_zainal/screens/Menu_Utama.dart';
 import 'package:finalproject_pmoif20a_zainal/constant/Bantuan.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
-class JenisKucingAdmin extends StatefulWidget {
-  const JenisKucingAdmin({Key? key}) : super(key: key);
+class JenisAdmin extends StatefulWidget {
+  const JenisAdmin({Key? key}) : super(key: key);
 
   @override
-  State<JenisKucingAdmin> createState() => _JenisKucingAdminState();
+  State<JenisAdmin> createState() => _JenisAdminState();
 }
 
-class _JenisKucingAdminState extends State<JenisKucingAdmin> {
+class _JenisAdminState extends State<JenisAdmin> {
 
 
   Future<void> loadData() async {
@@ -53,7 +54,7 @@ class _JenisKucingAdminState extends State<JenisKucingAdmin> {
           icon: const Icon(Icons.arrow_back_ios_new),
           onPressed: () {
             Navigator.push(context,
-                MaterialPageRoute(builder: (context) => const MenuUtama()));
+                MaterialPageRoute(builder: (context) => const MenuAdmin()));
           },
         ),
         title: Text("SmartCat"),
@@ -63,7 +64,7 @@ class _JenisKucingAdminState extends State<JenisKucingAdmin> {
           Container(
               child: Align(
                 alignment: Alignment.centerLeft,
-                child: Text("Hello, User"),
+                child: Text("Hello, Admin"),
               ))
         ],
       ),
@@ -151,6 +152,13 @@ class customCard extends StatelessWidget {
               subtitle: Text(
                 xSubtitle,
                 textAlign: TextAlign.center,
+              ),
+              trailing: IconButton(
+                icon: const Icon(Icons.edit),
+                onPressed: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => const JenisEditDelete()));
+                },
               ),
             ),
           ],
