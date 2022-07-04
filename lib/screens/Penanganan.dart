@@ -6,7 +6,6 @@ import 'package:finalproject_pmoif20a_zainal/screens/Penyakit_Kucing.dart';
 class Penanganan extends StatelessWidget {
   const Penanganan ({Key? key}) : super(key: key);
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
